@@ -1,0 +1,9 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+# Ignore datasets.
+*.tfrecord
+datasets/.*tfrecord
+datasets/.*/.*tfrecord
+datasets/train/*tfrecord
