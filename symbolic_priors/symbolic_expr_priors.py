@@ -27,6 +27,8 @@ ALL_SYMBOLIC_PRIMITIVE_CLASS = (
 
 ALL_SYMBOLIC_PRIMITIVE_CLASS_DICT = {sym: int(i) for i, sym in enumerate(
     ALL_SYMBOLIC_PRIMITIVE_CLASS)}
+ALL_CLASS_IND_SYMBOLIC_PRIMITIVE_DICT = {int(i):sym for i, sym in enumerate(
+    ALL_SYMBOLIC_PRIMITIVE_CLASS)}
 
 SYMBOLIC_PRIMITIVE_CLASS = (
     "sq",  # Squareroot.

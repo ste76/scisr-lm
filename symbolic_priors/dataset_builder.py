@@ -2,38 +2,28 @@
 
 from typing import Any, Callable, List, Union
 
-import tensorflow.google as tf
-from google3.learning.gemini.gemax.experimental.symbolic_llm.symbolic_priors import symbolic_expr_priors
+import tensorflow as tf
 
 
-def parse_fn(proto_key: bytes, proto: bytes):
+def parse_fn(proto: bytes):
   """Function to process the tf.train.Examples into batch data."""
   del proto_key
 
   features = {
       'x': tf.io.FixedLenFeature([1], tf.float32),
       'y': tf.io.FixedLenFeature([1], tf.float32),
+      'function': tf.io.FixedLenFeature([1], tf.string),
       'classes': tf.io.VarLenFeature(tf.string),
+      'class_indices': tf.io.FixedLenSequenceFeature([], tf.int64, allow_missing=True)
   }
   feature_val = tf.io.parse_single_example(proto, features)
   sample_features = {
-      'x': tf.convert_to_tensor(features['x'][0]),
-      'y': tf.convert_to_tensor(features['y'][0])
+      'x': tf.convert_to_tensor(feature_val['x']),
+      'y': tf.convert_to_tensor(feature_val['y']),
+      'function': tf.convert_to_tensor(feature_val['function']),
+      'labels': tf.convert_to_tensor(feature_val['class_indices']),
       }
-  # label_idx = [
-  #     symbolic_expr_priors.ALL_SYMBOLIC_PRIMITIVE_CLASS_DICT[idx]
-  #     for idx in tf.ragged.constant(feature_val['classes'])
-  # ]
-  # class_len = len(
-  #     symbolic_expr_priors.ALL_SYMBOLIC_PRIMITIVE_CLASS_DICT.keys())
-  # labels = tf.zeros(class_len)
-  # labels[label_idx] = 1
-  labels = tf.sparse.to_dense(feature_val['classes'])
-  sequence_length = 10
-  labels = labels.to_tensor(shape=(labels.bounding_shape()[0], sequence_length))
-  # sample_labels = {'labels': tf.sparse.to_dense(feature_val['classes'])}
-  sample_labels = {'labels': labels}
-  return sample_labels
+  return sample_features
 
 
 def create_dataset_builder(
@@ -44,9 +34,10 @@ def create_dataset_builder(
 ) -> tf.data.Dataset:
   """Creates tensorflow dataset to train symbolic_priors model."""
   files = tf.data.Dataset.list_files(file_pattern, shuffle=is_training)
+  print(f'files: {files}')
 
   dataset = files.interleave(
-      tf.data.SSTableDataset,
+      tf.data.TFRecordDataset,
       cycle_length=16,
       num_parallel_calls=tf.data.experimental.AUTOTUNE,
   )

@@ -1,0 +1,3 @@
+# Following are the ones to ignore the datasets.
+datasets/*/*.tfrecord
+*workdir*

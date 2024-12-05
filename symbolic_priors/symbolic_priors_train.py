@@ -1,10 +1,21 @@
 r"""Training script to train symbolic_priors regression model.
 
 Usage:
-  blaze run -c opt \
-    learning/gemini/gemax/experimental/symbolic_llm/symbolic_priors:symbolic_priors_train
+  python symbolic_priors/symbolic_priors_train.py \ 
+  --dataset_path='/Users/muruga/vishnu3/scisr-lm/datasets' 
+  --batch_size=1
 
 """
+import argparse
+import os
+import sys
+import json
+import logging
+
+# Add additional search paths to include current path files.
+print(sys.path)
+basepath = os.getcwd()
+sys.path.append(basepath)
 
 from collections.abc import Sequence
 from absl import app
@@ -12,44 +23,51 @@ from absl import flags
 
 import jax
 import jax.numpy as jnp
+import tensorflow as tf
+import numpy as np
 
-from google3.learning.gemini.gemax.experimental.symbolic_llm.symbolic_priors import dataset_builder
+from config import hparam_config
 
-
-_BATCH_SIZE = flags.DEFINE_integer(
-    name='batch_size',
-    default=10,
-    help='Training batch size.',
-)
-
-_SRC_FILES = flags.DEFINE_string(
-    name='src_files',
-    # default='/cns/uy-d/home/sthoppay/exp/ttl=5y/symbolic_llm/prior_dataset/priors_expression_20241116_205454/1/expr.sst*',
-    default='/cns/uy-d/home/sthoppay/exp/ttl=5y/symbolic_llm/prior_dataset/priors_expression_20241117_144716/1/expr.sst*',
-    help='Input SSTable containing training data.',
-)
-
-_IS_TRAIN = flags.DEFINE_bool(
-    name='is_training',
-    default=True,
-    help='Is the run for train or test.',
-)
+import train
 
 
-def main(argv: Sequence[str]) -> None:
-  if len(argv) > 1:
-    raise app.UsageError('Too many command-line arguments.')
+def main(args) -> None:
+  """Main entry for training of the symbolic priors model."""
+  # Prepare input variables for training and evaluation.
+  config = hparam_config.get_symbolicprior_config()
+  params = {}
+  if not args.dataset_path:
+    basepath = "/".join(os.getcwd().split('/')[:-1])
+  else:
+    basepath = args.dataset_path
+  params['train_ds_path'] = os.path.join(basepath, 'train/symbolic_priors_1.tfrecord')
+  params['test_ds_path'] = os.path.join(basepath, 'test/symbolic_priors_1.tfrecord')
+  params['workdir'] = args.workdir
+  train_state = train.train_and_evaluate(config=config, **params)
 
-  dataset = dataset_builder.create_dataset_builder(
-      file_pattern=_SRC_FILES.value,
-      batch_size=_BATCH_SIZE.value,
-      is_training=_IS_TRAIN.value
-  )
-  for batch in dataset:
-    for k, v in batch.items():
-      # print('batch size: ', jax.tree_util.tree_map(v, jnp.shape))
-      print('k: ', k, ' val: ', v.shape)
 
 
-if __name__ == '__main__':
-  app.run(main)
+if __name__ == "__main__":
+  FORMAT = '[%(asctime)s-%(filename)s %(lineno)s]: %(funcName)s-%(message)s'
+  logging.basicConfig(format=FORMAT, stream=sys.stdout, level=logging.INFO)
+
+  parser = argparse.ArgumentParser()
+  parser.add_argument('-bs', '--batch_size', 
+    dest='batch_size',
+    default=4,
+    type=int, help='Batch size for training the symbolic prior.')
+  parser.add_argument('-od', '--dataset_path', 
+    dest='dataset_path',
+    default=None,
+    type=str, help='Path to the tfrecord dataset to read and display examples')
+  parser.add_argument('-cf', '--workdir',
+    dest='workdir',
+    default='./symbolic_pretrain_workdir',
+    type=str, help='Work directory to store tensorboard data.')
+
+  args = parser.parse_args()
+  params = vars(args)
+
+  logging.info('Input Arguments: %s\n', json.dumps(params, indent=2))
+
+  main(args)

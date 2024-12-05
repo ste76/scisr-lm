@@ -2,9 +2,9 @@
 
 
 Usage:
-  python simulate_symbolic_expr.py \
-  --output_dir="./dataset" --variable_cnt=1 --num_examples=100000
+  python symbolic_priors/simulate_symbolic_expr.py  --output_dir="./datasets" --variable_cnt=1 --num_examples=1000000 --data_type='train'
 """
+
 import argparse
 import logging
 import json
@@ -35,24 +35,26 @@ def _int64_feature(value):
 	return tf.train.Feature(int64_list=tf.train.Int64List(value=value))
 
 
-def serialize_example(x, y, classes, class_indice_array):
+def serialize_example(x, y, function_name, classes, class_indice_array):
 	"""Given the input, output, symbolic_func, classes, serialize to tf.train.Example."""
 	# Create tf.Train.Feature
 	feature = {
 	  'x': _float_feature([x]),
 	  'y': _float_feature([y]),
+	  'function': _bytes_feature([bytes(function_name, 'utf-8')]),
 	  'classes': _bytes_feature(classes),
-	  'class_indices': _int64_feature(class_indice_array.tolist())
+	  'class_indices': _int64_feature(class_indice_array)
 	}
 
 	example_proto = tf.train.Example(features=tf.train.Features(feature=feature))
 	return example_proto.SerializeToString()
 
-def generate_dataset(params, data_type='train'):
+def generate_dataset(params):
 	"""Generates dataset by simulating the symbolic priors expression."""
 	output_dir = params.get('output_dir', './dataset')
 	variable_cnt = params.get('variable_cnt', 1)
 	num_examples = params.get('num_examples', 100)
+	data_type = params.get('data_type', 'train')
 
 	# Step1: Identify the expressions corresponding to the variable_cnt input
 	#  parameters.
@@ -87,8 +89,6 @@ def generate_dataset(params, data_type='train'):
 
 		all_class_indices = symbolic_expr_priors.ALL_SYMBOLIC_PRIMITIVE_CLASS_DICT
 		num_classes = len(all_class_indices)
-		print(symbolic_expr_dict)
-		print(classes)
 		class_indices = [all_class_indices[sym] for sym in classes]
 		class_indice_array = np.zeros(num_classes, dtype=np.int64)
 		class_indice_array[class_indices] = 1
@@ -103,7 +103,9 @@ def generate_dataset(params, data_type='train'):
 
 
 		# Step3: Write TFRecord dataset in the output_dir
-		example = serialize_example(x, y, classes_encoded, class_indice_array)
+		example = serialize_example(
+			x=x, y=y, function_name=symbolic_expr_func.__name__, 
+			classes=classes_encoded, class_indice_array=class_indice_array)
 		writer.write(example)
 
 
@@ -125,6 +127,10 @@ if __name__ == "__main__":
 		dest='num_examples',
 		default=10,
 		type=int, help='Total number of train examples and 1/10 test examples to generate.')
+	parser.add_argument('-dt', '--data_type',
+		dest='data_type',
+		default='train',
+		type=str, help='Type of dataset to be generated. One of train, test, valid')
 
 	args = parser.parse_args()
 	params = vars(args)
