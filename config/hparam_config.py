@@ -6,7 +6,7 @@ def get_symbolicprior_config():
   """Get the default hyperparameter configuration."""
   config = Namespace(**{})
 
-  config.learning_rate = 0.001
+  config.learning_rate = 0.0001
   config.momentum = 0.9
   config.batch_size = 128
   config.num_epochs = 100

@@ -25,6 +25,23 @@ ALL_SYMBOLIC_PRIMITIVE_CLASS = (
     "at",  # ArcTan.
 )
 
+ALL_SYMBOLIC_PRIMITIVE_DICT = {
+    "ad":  'Add',
+    "mu":  'Multiply',
+    "su":  'Substract',
+    "dv":  'Divide',
+    "sq":  'Squareroot',
+    "py":  'Polynomial',
+    "ex":  'Exponential',
+    "ln":  'Logorathmic',
+    "co":  'Cosine',
+    "si":  'Sine',
+    "ta":  'Tangent',
+    "as":  'ArcSine',
+    "ac":  'ArcCosine',
+    "at":  'ArcTangent',  
+}
+
 ALL_SYMBOLIC_PRIMITIVE_CLASS_DICT = {sym: int(i) for i, sym in enumerate(
     ALL_SYMBOLIC_PRIMITIVE_CLASS)}
 ALL_CLASS_IND_SYMBOLIC_PRIMITIVE_DICT = {int(i):sym for i, sym in enumerate(

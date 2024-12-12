@@ -5,7 +5,7 @@ from typing import Union, Any, List
 
 from flax import linen as nn
 from flax.metrics import tensorboard
-from flax.training import train_state
+from flax.training import train_state, checkpoints
 
 import jax
 import jax.numpy as jnp
@@ -232,6 +232,7 @@ def train_and_evaluate(config, **kwargs) -> train_state.TrainState:
   train_ds_path = kwargs.get('train_ds_path', None)
   test_ds_path = kwargs.get('test_ds_path', None)
   workdir = kwargs.get('workdir', './')
+  checkpoint_dir = kwargs.get('checkpoint_dir', './')
 
   train_ds, test_ds = get_datasets(config, train_ds_path, test_ds_path)
   rng = jax.random.key(0)
@@ -284,6 +285,7 @@ def train_and_evaluate(config, **kwargs) -> train_state.TrainState:
         )
     )
 
+    # Write the tensorboard summary.
     summary_writer.add_scalar("loss/train", train_loss, epoch)
     summary_writer.add_scalar("loss/validation", test_loss, epoch)
   
@@ -296,5 +298,8 @@ def train_and_evaluate(config, **kwargs) -> train_state.TrainState:
       summary_writer.add_scalar(f"train/{symb}_accuracy", train_class_accuracy[i], epoch)
       summary_writer.add_scalar(f"test/{symb}_accuracy", test_class_accuracy[i], epoch)
     
+    # Write the check point.
+    checkpoints.save_checkpoint(ckpt_dir=checkpoint_dir, target=state, step=epoch)
+
   summary_writer.flush()
   return state

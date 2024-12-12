@@ -32,6 +32,7 @@ SYMBOLIC_EXPR_PRIORS_ONE_VARIABLE = (
         "x": (-10, 10),
         "function": symbolic_expr_priors.gaussian_prob_density,
         "classes": ("py", "ex"),
+        "hint": "guassian",
     },
     {
         "sim": "math",
@@ -40,6 +41,7 @@ SYMBOLIC_EXPR_PRIORS_ONE_VARIABLE = (
         "x": (-10, 10),
         "function": symbolic_expr_priors.nguyen1_poly_expression1,
         "classes": ("ad", "py"),
+        "hint": "polynomial",
     },
     {
         "sim": "math",
@@ -48,6 +50,7 @@ SYMBOLIC_EXPR_PRIORS_ONE_VARIABLE = (
         "x": (-10, 10),
         "function": symbolic_expr_priors.nguyen1_poly_expression2,
         "classes": ("ad", "py"),
+        "hint": "polynomial",
     },
     {
         "sim": "math",
@@ -56,6 +59,7 @@ SYMBOLIC_EXPR_PRIORS_ONE_VARIABLE = (
         "x": (-3.14, 3.14),
         "function": symbolic_expr_priors.nguyen1_poly_trig_expression1,
         "classes": ("si", "py", "mu", "co"),
+        "hint": "Trigonomtric and polynomial",
     },
     {
         "sim": "math",
@@ -64,6 +68,7 @@ SYMBOLIC_EXPR_PRIORS_ONE_VARIABLE = (
         "x": (-3.14, 3.14),
         "function": symbolic_expr_priors.nguyen1_poly_trig_expression2,
         "classes": ("ad", "si", "ad", "ex"),
+        "hint": "Trigonomtric and polynomial",
     },
     {
         "sim": "math",
@@ -72,6 +77,7 @@ SYMBOLIC_EXPR_PRIORS_ONE_VARIABLE = (
         "x": (0.1, 100),
         "function": symbolic_expr_priors.nguyen1_log_expression1,
         "classes": ("ad", "ln", "py"),
+        "hint": "Logorithmic"
     },
     {
         "sim": "math",
@@ -80,6 +86,7 @@ SYMBOLIC_EXPR_PRIORS_ONE_VARIABLE = (
         "x": (-1.0, 1.0),
         "function": symbolic_expr_priors.sthoppay_math_expression1,
         "classes": ("ad", "co", "si", "py"),
+        "hint": "Trigonomtric and polynomial",
     },
     {
         "sim": "math",
@@ -88,6 +95,7 @@ SYMBOLIC_EXPR_PRIORS_ONE_VARIABLE = (
         "x": (-1.0, 1.0),
         "function": symbolic_expr_priors.sthoppay_math_expression2,
         "classes": ("su", "ad", "ac", "py", "ta"),
+        "hint": "Trigonomtric and polynomial",
     },
     {
         "sim": "math",
@@ -96,6 +104,7 @@ SYMBOLIC_EXPR_PRIORS_ONE_VARIABLE = (
         "x": (-1.0, 1.0),
         "function": symbolic_expr_priors.sthoppay_math_expression3,
         "classes": ("mu", "dv", "as", "ta", "co"),
+        "hint": "Trigonomtric and polynomial",
     },
     {
         "sim": "math",
@@ -104,6 +113,7 @@ SYMBOLIC_EXPR_PRIORS_ONE_VARIABLE = (
         "x": (0, 2.0),
         "function": symbolic_expr_priors.sthoppay_math_expression4,
         "classes": ("ln", "ad", "py"),
+        "hint": "Logorithmic and polynomial",
     },
     {
         "sim": "math",
@@ -112,6 +122,7 @@ SYMBOLIC_EXPR_PRIORS_ONE_VARIABLE = (
         "x": (0, 2.0),
         "function": symbolic_expr_priors.sthoppay_math_expression5,
         "classes": ("dv", "ln", "at"),
+        "hint": "Logorithmic and Trigonomtric",
     },
     {
         "sim": "math",
@@ -120,6 +131,7 @@ SYMBOLIC_EXPR_PRIORS_ONE_VARIABLE = (
         "x": (0, 2.0),
         "function": symbolic_expr_priors.sthoppay_math_expression6,
         "classes": ("mu", "ln", "sq", "py"),
+        "hint": "Logorithmic and polynomial",
     },
     {
         "sim": "math",
@@ -128,6 +140,7 @@ SYMBOLIC_EXPR_PRIORS_ONE_VARIABLE = (
         "x": (-2.0, 2.0),
         "function": symbolic_expr_priors.sthoppay_math_expression7,
         "classes": ("mu", "co", "si"),
+        "hint": "Trigonomtric",
     },
     {
         "sim": "math",
@@ -136,6 +149,7 @@ SYMBOLIC_EXPR_PRIORS_ONE_VARIABLE = (
         "x": (0, 2.0),
         "function": symbolic_expr_priors.sthoppay_math_expression8,
         "classes": ("sq",),
+        "hint": "polynomial",
     },
     {
         "sim": "math",
@@ -144,6 +158,7 @@ SYMBOLIC_EXPR_PRIORS_ONE_VARIABLE = (
         "x": (0, 2.0),
         "function": symbolic_expr_priors.sthoppay_math_expression9,
         "classes": ("py", "ex", "dv"),
+        "hint": "polynomial",
     },
     {
         "sim": "math",
@@ -152,5 +167,6 @@ SYMBOLIC_EXPR_PRIORS_ONE_VARIABLE = (
         "x": (0, 2.0),
         "function": symbolic_expr_priors.sthoppay_math_expression10,
         "classes": ("ex", "py", "ad", "si"),
+        "hint": "Exponential, trigonometric and polynomial",
     },
 )

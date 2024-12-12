@@ -1,3 +1,12 @@
 # Following are the ones to ignore the datasets.
 datasets/*/*.tfrecord
+datasets/symbolic_expr_prompts_*
 *workdir*
+
+# temp directory to store data.
+scratchpad
+scratchpad/*
+
+# Trained checkpoints will not be in the repo.
+symbolic_pretrain_ckpt
+symbolic_pretrain_ckpt/*
