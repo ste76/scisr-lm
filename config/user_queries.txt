@@ -98,53 +98,61 @@ Test for higher-order symbolic terms in this equation
 Is there an algebraic transformation implied in the input/output relation?  
 Identify multi-term symbolic relationships that minimize error
 Determine if nested exponential or logarithmic functions improve the fit
-"What is the underlying mathematical function that best describes the relationship between the input and output variables?"
-"Can you identify the functional form of the relationship between the input and output variables?"
-"What is the degree of the polynomial that best fits the data?"
-"What is the base of the exponential function that best fits the data?"
-"What is the period of the trigonometric function that best fits the data?"
-"Is there a logarithmic relationship between the input and output variables?"
-"Is there a power-law relationship between the input and output variables?"
-"Is there a rational function relationship between the input and output variables?"
-"Is there a piecewise function relationship between the input and output variables?"
-"Can you derive a symbolic expression for the output variable as a function of the input variable?"
-"Can you find a closed-form solution for the output variable?"
-"Can you approximate the function using a Taylor series expansion?"
-"Can you use a Fourier series to approximate the function?"
-"Can you use a Chebyshev polynomial approximation to the function?"
-"Can you use a spline interpolation to approximate the function?"
-"Can you use a neural network to learn the underlying function?"
-"Can you use genetic programming to evolve a symbolic expression for the function?"
-"Can you use symbolic regression to discover the underlying physical laws governing the system?"
-"Can you use symbolic regression to identify the key parameters that influence the output variable?"
-"What is the coefficient of determination (R-squared) for the best-fit model?"
-"What is the adjusted R-squared for the best-fit model?"
-"What is the root mean square error (RMSE) for the best-fit model?"
-"What is the mean absolute error (MAE) for the best-fit model?"
-"What is the mean absolute percentage error (MAPE) for the best-fit model?"
-"What is the Akaike Information Criterion (AIC) for the best-fit model?"
-"What is the Bayesian Information Criterion (BIC) for the best-fit model?"
-"How can we assess the goodness-of-fit of the model?"
-"How can we validate the model on a separate test set?"
-"How can we perform cross-validation to assess the model's performance?"
-"How sensitive is the output variable to changes in the input variable?"
-"What is the uncertainty in the predicted output values?"
-"How can we quantify the uncertainty in the model parameters?"
-"How can we propagate uncertainty through the model?"
-"How can we perform Monte Carlo simulations to assess uncertainty?"
-"How can we use Bayesian inference to incorporate prior knowledge and uncertainty?"
-"Can you identify any nonlinearities in the relationship between the input and output variables?"
-"Can you identify any time-dependent effects in the relationship?"
-"Can you identify any spatial dependencies in the data?"
-"Can you identify any interactions between the input variables?"
-"Can you identify any outliers or anomalies in the data?"
-"Can you handle missing data in the dataset?"
-"Can you deal with noisy data?"
-"Can you perform feature engineering to improve the model's performance?"
-"Can you use dimensionality reduction techniques to simplify the model?"
-"Can you use regularization techniques to prevent overfitting?"
-"Can you derive a differential equation that describes the relationship between the input and output variables?"
-"Can you solve the differential equation analytically or numerically?"
-"Can you identify any conservation laws or symmetries in the system?"
-"Can you use dimensional analysis to derive scaling laws for the system?"
-"Can you use statistical mechanics to model the system's behavior?"
+What is the underlying mathematical function that best describes the relationship between the input and output variables?
+Can you identify the functional form of the relationship between the input and output variables?
+What is the degree of the polynomial that best fits the data?
+What is the base of the exponential function that best fits the data?
+What is the period of the trigonometric function that best fits the data?
+Is there a logarithmic relationship between the input and output variables?
+Is there a power-law relationship between the input and output variables?
+Is there a rational function relationship between the input and output variables?
+Is there a piecewise function relationship between the input and output variables?
+Can you derive a symbolic expression for the output variable as a function of the input variable?
+Can you find a closed-form solution for the output variable?
+Can you approximate the function using a Taylor series expansion?
+Can you use a Fourier series to approximate the function?
+Can you use a Chebyshev polynomial approximation to the function?
+Can you use a spline interpolation to approximate the function?
+Can you use a neural network to learn the underlying function?
+Can you use genetic programming to evolve a symbolic expression for the function?
+Can you use symbolic regression to discover the underlying physical laws governing the system?
+Can you use symbolic regression to identify the key parameters that influence the output variable?
+What is the coefficient of determination (R-squared) for the best-fit model?
+What is the adjusted R-squared for the best-fit model?
+What is the root mean square error (RMSE) for the best-fit model?
+What is the mean absolute error (MAE) for the best-fit model?
+What is the mean absolute percentage error (MAPE) for the best-fit model?
+What is the Akaike Information Criterion (AIC) for the best-fit model?
+What is the Bayesian Information Criterion (BIC) for the best-fit model?
+How can we assess the goodness-of-fit of the model?
+How can we validate the model on a separate test set?
+How can we perform cross-validation to assess the model's performance?
+How sensitive is the output variable to changes in the input variable?
+What is the uncertainty in the predicted output values?
+How can we quantify the uncertainty in the model parameters?
+How can we propagate uncertainty through the model?
+How can we perform Monte Carlo simulations to assess uncertainty?
+How can we use Bayesian inference to incorporate prior knowledge and uncertainty?
+Can you identify any nonlinearities in the relationship between the input and output variables?
+Can you identify any time-dependent effects in the relationship?
+Can you identify any spatial dependencies in the data?
+Can you identify any interactions between the input variables?
+Can you identify any outliers or anomalies in the data?
+Can you handle missing data in the dataset?
+Can you deal with noisy data?
+Can you perform feature engineering to improve the model's performance?
+Can you use dimensionality reduction techniques to simplify the model?
+Can you use regularization techniques to prevent overfitting?
+Can you derive a differential equation that describes the relationship between the input and output variables?
+Can you solve the differential equation analytically or numerically?
+Can you identify any conservation laws or symmetries in the system?
+Can you use dimensional analysis to derive scaling laws for the system?
+Can you use statistical mechanics to model the system's behavior?
+What is the standard deviation of the output values?
+What is the average (mean) of the input and output value?
+What is the Median of the input and  output value?
+What is the variance of the input and output value?
+What the range and interquantile range of the input and output value?
+Are there any significant outliers in the output value?
+What is the skew and kurtosis of the output value?
+What proportion of the output are negative?
