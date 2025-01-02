@@ -22,6 +22,8 @@ class AgentRes(BaseModel):
   def from_llm(cls, res:dict, tool_output: str=None):  # Returns the class itself.
     try:
       out = json.loads(res["message"]["content"])
+      logging.info('\nResponse from tool:\n%s\n\n', res)
+      logging.info('\nOutput from tool:\n%s\n\n', out)
       return cls(tool_name=out["name"], tool_input=out["parameters"], tool_output=tool_output)
     except Exception as e:
       msg = f"Error from Ollama: \n{res}\n"
